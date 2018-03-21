@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dj.springboot_mybatis.mapper.UserMapper">
+
+	<select id="findUser" resultType="com.dj.springboot_mybatis.domain.User">
+		select * from user
+	</select>
+
+	<insert id="addUser" parameterType="com.dj.springboot_mybatis.domain.User">
+		<selectKey keyProperty="id" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+
+		INSERT INTO user(name) VALUE (#{name})
+	</insert>
+
+	<select id="findUserById" parameterType="Integer" resultType="com.dj.springboot_mybatis.domain.User">
+		SELECT * FROM user WHERE id = #{id}
+	</select>
+
+	<delete id="deleteUser" parameterType="com.dj.springboot_mybatis.domain.User">
+		DELETE FROM user WHERE id = #{id}
+	</delete>
+
+	<update id="updateUser" parameterType="com.dj.springboot_mybatis.domain.User">
+		UPDATE user SET name = #{name} WHERE id = #{id}
+	</update>
+</mapper>

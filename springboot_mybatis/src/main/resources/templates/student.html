@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table width="50%" border="1" cellspacing="1" cellpadding="0" align="center">
+        <tr>
+            <td>Id</td>
+            <td>姓名</td>
+            <td>a</td>
+            <td>年龄</td>
+            <td>性别</td>
+            <td>状态</td>
+        </tr>
+        <tr th:each="stu : ${stuList}">
+            <td th:text="${stu.id}"></td>
+            <td><input type="text" th:value="${stu.name}"></td>
+            <td>a：<input type="radio" th:checked="${stu.id % 2 != 0}"/></td>
+            <td th:text="${stu.age}"></td>
+            <td th:switch="${stu.sex}">
+                <span th:case="1">男</span>
+                <span th:case="2">女</span>
+            </td>
+            <td>
+                <select>
+                    <option>请选择</option>
+                    <option th:selected="${stu.status == 1}">发货</option>
+                    <option th:selected="${stu.status == 2}">待发货</option>
+                </select>
+            </td>
+
+        </tr>
+    </table>
+</body>
+</html>
